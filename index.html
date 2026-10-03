@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Past Simple &amp; Past Perfect — Complete the Sentence (B1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --ink:        #111111;
+    --ink-soft:   #3A3A3A;
+    --gray:       #6E6E6E;
+    --gray-soft:  #E4E4E4;
+    --white:      #FFFFFF;
+    --r-lg: 26px;
+    --r-md: 16px;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  html,body{ height:100%; }
+
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--white);
+    color:var(--ink);
+    min-height:100vh;
+    padding:36px 18px;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  .bg-blob{ position:fixed; border-radius:50%; filter:blur(60px); z-index:0; opacity:0.6; }
+  .bg-blob.b1{ width:360px; height:360px; background:var(--gray-soft); top:-140px; right:-120px; }
+  .bg-blob.b2{ width:320px; height:320px; background:var(--gray-soft); bottom:-140px; left:-120px; }
+
+  .stage{ max-width:620px; margin:0 auto; position:relative; z-index:1; }
+
+  /* ---------- Persistent header ---------- */
+  .header-row{
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:26px;
+  }
+  .m1-badge{
+    width:44px; height:44px; border-radius:12px;
+    background:var(--ink); color:var(--white);
+    border:2.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:15px;
+    box-shadow:0 6px 12px -4px rgba(17,17,17,0.35);
+  }
+  .m1-label{
+    font-family:'Poppins',sans-serif; font-weight:800; font-size:16px;
+    color:var(--ink);
+  }
+  .m1-label span{ color:var(--gray); }
+
+  .meta-row{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:18px; gap:10px; flex-wrap:wrap;
+  }
+  .q-count{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:13px;
+    letter-spacing:0.04em; color:var(--ink); text-transform:uppercase;
+  }
+  .dots{ display:flex; gap:5px; flex-wrap:wrap; max-width:260px; }
+  .dot{
+    width:9px; height:9px; border-radius:50%;
+    border:2px solid var(--gray-soft);
+    background:transparent;
+    transition:background .25s ease, border-color .25s ease;
+  }
+  .dot.current{ background:var(--ink); border-color:var(--ink); }
+  .dot.done{ background:var(--ink-soft); border-color:var(--ink-soft); }
+
+  .score-badge{
+    font-family:'Inter',sans-serif; font-weight:800; font-size:13px;
+    color:var(--ink); background:var(--white);
+    border:2.5px solid var(--ink);
+    padding:8px 16px; border-radius:999px;
+    white-space:nowrap;
+  }
+
+  /* ---------- Screens ---------- */
+  .screen{ display:none; }
+  .screen.active{ display:block; animation:fadeUp .45s ease both; }
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(12px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  /* ---------- WELCOME ---------- */
+
+  .welcome{ text-align:center; padding:36px 18px 10px; }
+
+  .eyebrow-pill{
+    display:inline-flex; align-items:center; gap:7px;
+    background:var(--ink); color:var(--white);
+    font-family:'Inter',sans-serif; font-weight:700; font-size:12px;
+    letter-spacing:0.1em; text-transform:uppercase;
+    padding:9px 18px; border-radius:999px;
+    margin-bottom:26px;
+  }
+
+  h1.title{
+    position:relative; display:inline-block;
+    font-family:'Poppins',sans-serif; font-weight:900;
+    font-size:clamp(34px,8.6vw,58px);
+    text-transform:uppercase;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+    line-height:1.05;
+    margin-bottom:22px;
+  }
+  h1.title::after{
+    content:""; position:absolute; left:2%; right:2%; bottom:-8px;
+    height:15px; background:var(--gray-soft); border-radius:8px; z-index:-1;
+  }
+
+  p.lead{
+    font-size:17px; font-weight:700; color:var(--ink);
+    margin-bottom:6px;
+  }
+  p.sub-lead{
+    font-size:14px; color:var(--gray); margin-bottom:34px;
+  }
+
+  .preview-row{
+    display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+    margin-bottom:32px;
+  }
+  .chip-preview{
+    position:relative;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:15px;
+    background:var(--white); color:var(--ink);
+    border:2.5px solid var(--ink);
+    border-radius:14px;
+    padding:13px 20px;
+  }
+  .chip-preview::before{
+    content:""; position:absolute; left:18px; bottom:-9px;
+    border-left:8px solid transparent; border-right:8px solid transparent;
+    border-top:8px solid var(--ink);
+  }
+  .chip-preview::after{
+    content:""; position:absolute; left:20px; bottom:-6px;
+    border-left:6px solid transparent; border-right:6px solid transparent;
+    border-top:6px solid var(--white);
+  }
+
+  .info-box{
+    text-align:left; background:var(--gray-soft); border:2.5px dashed var(--gray);
+    border-radius:var(--r-md); padding:18px 20px; margin:0 0 34px;
+    font-size:13.5px; color:var(--ink); line-height:1.55;
+  }
+  .info-box strong{ color:var(--ink); }
+
+  .btn{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:15px;
+    border-radius:999px;
+    padding:17px 32px;
+    cursor:pointer;
+    display:inline-flex; align-items:center; justify-content:center; gap:9px;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    border:none;
+  }
+  .btn:focus-visible{ outline:3px solid var(--gray); outline-offset:3px; }
+
+  .btn-primary{
+    background:var(--ink); color:var(--white);
+    border:3px solid var(--ink);
+    box-shadow:4px 5px 0 var(--gray);
+    width:100%; max-width:340px;
+  }
+  .btn-primary:hover{ transform:translate(-2px,-2px); box-shadow:6px 7px 0 var(--gray); }
+  .btn-primary:active{ transform:translate(1px,2px); box-shadow:2px 2px 0 var(--gray); }
+  .btn-primary:disabled{
+    background:var(--gray-soft); border-color:var(--gray-soft); color:var(--gray);
+    box-shadow:none; cursor:not-allowed; transform:none;
+  }
+
+  .btn-ghost{
+    background:var(--white); color:var(--ink);
+    border:3px solid var(--ink);
+    box-shadow:3px 4px 0 rgba(17,17,17,0.18);
+  }
+  .btn-ghost:hover{ transform:translate(-2px,-2px); box-shadow:5px 6px 0 rgba(17,17,17,0.18); }
+  .btn-ghost:active{ transform:translate(1px,2px); box-shadow:1px 1px 0 rgba(17,17,17,0.18); }
+
+  .btn-sm{
+    font-size:13px; padding:10px 18px; border-radius:999px;
+    background:var(--white); color:var(--ink);
+    border:2.5px solid var(--ink);
+    box-shadow:2.5px 3px 0 rgba(17,17,17,0.18);
+  }
+  .btn-sm:hover{ transform:translate(-1px,-1px); box-shadow:3.5px 4px 0 rgba(17,17,17,0.18); }
+  .btn-sm:active{ transform:translate(1px,1px); box-shadow:1px 1px 0 rgba(17,17,17,0.18); }
+  .btn-sm.recording{ background:var(--ink); color:var(--white); border-color:var(--ink); animation:pulseRec 1s ease-in-out infinite; }
+  @keyframes pulseRec{ 0%,100%{ box-shadow:2.5px 3px 0 rgba(17,17,17,0.18);} 50%{ box-shadow:2.5px 3px 0 rgba(17,17,17,0.18), 0 0 0 6px rgba(110,110,110,0.35);} }
+
+  /* ---------- ACTIVITY CARD ---------- */
+
+  .card{
+    background:var(--white);
+    border:3px solid var(--ink);
+    border-radius:var(--r-lg);
+    box-shadow:9px 10px 0 var(--gray-soft);
+    padding:32px 30px;
+    margin-bottom:20px;
+  }
+
+  .card-label{
+    font-family:'Inter',sans-serif; font-weight:800; font-size:14px;
+    letter-spacing:0.04em; text-transform:uppercase;
+    color:var(--ink); margin-bottom:8px;
+  }
+  .card-sub{ font-size:14px; color:var(--gray); margin-bottom:22px; }
+
+  .field-label{
+    font-family:'Inter',sans-serif; font-weight:800; font-size:12.5px;
+    letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink); margin-bottom:10px;
+  }
+
+  .photo-frame{
+    position:relative; width:100%; aspect-ratio:16/10; max-height:260px;
+    background:var(--gray-soft);
+    border:3px solid var(--ink);
+    border-radius:var(--r-md);
+    overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:6px 7px 0 var(--gray-soft);
+    margin-bottom:24px;
+  }
+  .photo-frame img{
+    width:100%; height:100%; object-fit:cover;
+    opacity:0; transition:opacity .35s ease;
+  }
+  .img-loading{
+    position:absolute; font-family:'Inter',sans-serif; font-size:12.5px;
+    font-weight:700; color:var(--gray); letter-spacing:0.03em;
+  }
+
+  .listen-row{ display:flex; justify-content:center; margin-bottom:26px; }
+  .btn-listen{
+    background:var(--ink); color:var(--white);
+    border:none; border-radius:999px;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:13.5px;
+    padding:12px 22px; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+    box-shadow:3px 4px 0 var(--gray-soft);
+    transition:transform .15s ease;
+  }
+  .btn-listen:hover{ transform:translate(-2px,-2px); }
+  .btn-listen:active{ transform:translate(1px,2px); }
+  .btn-listen svg{ width:16px; height:16px; }
+  .btn-listen.speaking{ animation:speakPulse .7s ease-in-out infinite; }
+  @keyframes speakPulse{ 0%,100%{ opacity:1;} 50%{ opacity:.6;} }
+
+  .sentence-block{
+    text-align:center; margin-bottom:24px;
+  }
+  .sentence-text{
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:19px;
+    color:var(--ink); line-height:1.55;
+  }
+  .sentence-text .gap{
+    display:inline-block; min-width:120px;
+    border-bottom:3px solid var(--ink);
+    margin:0 4px;
+  }
+
+  .answer-row{
+    display:flex; gap:10px; margin-bottom:8px;
+  }
+  .answer-input{
+    flex:1; min-width:0;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:16px;
+    color:var(--ink); background:var(--white);
+    border:2.5px solid var(--ink); border-radius:14px;
+    padding:14px 18px;
+    text-align:center; text-transform:lowercase;
+  }
+  .answer-input:focus{ outline:3px solid var(--gray-soft); outline-offset:1px; }
+  .answer-input.is-correct{ border-color:var(--ink); background:var(--gray-soft); }
+  .answer-input.is-wrong{ border-color:var(--ink); background:var(--white); text-decoration:line-through; }
+  .btn-check{
+    flex:0 0 auto;
+    font-family:'Inter',sans-serif; font-weight:700; font-size:14px;
+    background:var(--ink); color:var(--white);
+    border:none; border-radius:14px;
+    padding:14px 22px; cursor:pointer;
+    box-shadow:3px 4px 0 var(--gray-soft);
+    transition:transform .15s ease;
+  }
+  .btn-check:hover{ transform:translate(-2px,-2px); }
+  .btn-check:active{ transform:translate(1px,2px); }
+  .btn-check:disabled{ background:var(--gray-soft); color:var(--gray); cursor:not-allowed; box-shadow:none; transform:none; }
+
+  .correct-reveal{
+    font-size:13.5px; color:var(--gray); margin-top:10px;
+  }
+  .correct-reveal strong{ color:var(--ink); }
+
+  .feedback-toast{
+    display:none; align-items:center; gap:10px;
+    font-family:'Inter',sans-serif; font-weight:800; font-size:14px;
+    padding:13px 18px; border-radius:var(--r-md);
+    margin:18px 0 0;
+    border:2.5px solid var(--ink);
+  }
+  .feedback-toast.show{ display:flex; animation:popIn .3s cubic-bezier(.34,1.56,.64,1); }
+  @keyframes popIn{ from{ opacity:0; transform:scale(.92) translateY(-4px);} to{ opacity:1; transform:scale(1) translateY(0);} }
+  .feedback-toast.correct{ background:var(--ink); color:var(--white); box-shadow:3px 4px 0 var(--gray-soft); }
+  .feedback-toast.incorrect{ background:var(--white); color:var(--ink); box-shadow:3px 4px 0 var(--gray-soft); border-color:var(--ink); }
+  .feedback-toast svg{ width:18px; height:18px; flex-shrink:0; }
+
+  .shake{ animation:shake .4s ease; }
+  @keyframes shake{
+    10%,90%{ transform:translateX(-2px); }
+    20%,80%{ transform:translateX(4px); }
+    30%,50%,70%{ transform:translateX(-7px); }
+    40%,60%{ transform:translateX(7px); }
+  }
+
+  /* ---------- RECORD YOUR VOICE ---------- */
+  .record-panel{
+    display:none;
+    margin-top:20px;
+    background:var(--gray-soft);
+    border:2.5px dashed var(--gray);
+    border-radius:var(--r-md);
+    padding:18px 18px 16px;
+  }
+  .record-panel.show{ display:block; animation:popIn .3s ease both; }
+  .record-title{
+    font-family:'Inter',sans-serif; font-weight:800; font-size:12.5px;
+    letter-spacing:0.05em; text-transform:uppercase; color:var(--ink);
+    margin-bottom:6px; display:flex; align-items:center; gap:6px;
+  }
+  .record-desc{ font-size:13px; color:var(--gray); margin-bottom:14px; line-height:1.5; }
+  .record-controls{ display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .record-status{ font-size:12.5px; font-weight:700; color:var(--ink); }
+  .record-audio{ margin-top:12px; width:100%; }
+  .record-note{ font-size:12px; color:var(--gray); margin-top:10px; font-style:italic; }
+
+  .action-row{ display:flex; gap:14px; margin-top:22px; }
+  .action-row .btn{ flex:1; }
+
+  /* ---------- FINAL ---------- */
+
+  .final-card{ text-align:center; padding:48px 32px 40px; }
+
+  .trophy-wrap{
+    width:88px; height:88px; margin:0 auto 22px;
+    background:var(--ink); border-radius:22px;
+    border:3px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:4px 5px 0 var(--gray-soft);
+    transform:rotate(-4deg);
+    animation:trophyPop .6s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes trophyPop{ 0%{ transform:scale(0) rotate(-24deg);} 100%{ transform:scale(1) rotate(-4deg);} }
+  .trophy-wrap svg{ width:42px; height:42px; }
+
+  h2.final-title{
+    font-family:'Poppins',sans-serif; font-weight:900; text-transform:uppercase;
+    font-size:28px; margin-bottom:8px;
+  }
+  p.final-sub{ color:var(--gray); font-size:14.5px; margin-bottom:28px; }
+
+  .score-display{
+    display:inline-flex; align-items:baseline; gap:6px;
+    font-family:'Poppins',sans-serif; font-weight:900;
+    font-size:50px; color:var(--ink);
+    margin-bottom:4px;
+  }
+  .score-display span.of{ font-size:22px; color:var(--gray); font-weight:700; }
+  .score-label{
+    font-family:'Inter',sans-serif; font-weight:800;
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--gray); margin-bottom:28px;
+  }
+
+  .progress-track{
+    height:12px; background:var(--gray-soft); border:2px solid var(--ink);
+    border-radius:99px; overflow:hidden; margin-bottom:32px;
+  }
+  .progress-fill{ height:100%; width:0%; background:var(--ink); transition:width 1s cubic-bezier(.22,1,.36,1); }
+
+  .final-btn-row{ display:flex; flex-direction:column; gap:12px; align-items:center; }
+  .final-btn-row .btn{ width:100%; max-width:340px; }
+
+  @media (max-width:480px){
+    .card{ padding:24px 18px; }
+    .final-card{ padding:40px 20px 34px; }
+    .welcome{ padding:26px 10px 6px; }
+    .action-row{ flex-direction:column; }
+    .sentence-text{ font-size:17px; }
+  }
+
+
+  /* ---------- FOR / SINCE gap-fill additions ---------- */
+  .sentence-text{ line-height:2.3; }
+  .hint-unused{ font-family:'Inter',sans-serif; font-weight:600; font-size:.78em; color:var(--gray); margin:0 2px; }
+  .gap-slot{
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:104px; min-height:40px; padding:2px 12px; margin:0 4px;
+    font-family:'Poppins',sans-serif; font-weight:700; font-size:.92em; color:var(--ink);
+    background:var(--white); border:2.5px dashed var(--gray); border-radius:12px;
+    cursor:pointer; vertical-align:middle; line-height:1.2;
+    transition:background .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  .gap-slot:hover{ transform:translateY(-1px); }
+  .gap-slot.active{ border-style:solid; border-color:var(--ink); background:var(--gray-soft); }
+  .gap-slot.filled{ border-style:solid; border-color:var(--ink); background:var(--white); }
+  .gap-slot.filled.active{ background:var(--gray-soft); }
+  .gap-slot.is-correct{ background:var(--ink); color:var(--white); border-color:var(--ink); cursor:default; }
+  .gap-slot.is-wrong{ background:var(--white); color:var(--gray); text-decoration:line-through; border-color:var(--ink); cursor:default; }
+  .gap-slot:disabled{ cursor:default; transform:none; }
+  .bank-label{ text-align:center; margin-bottom:12px; }
+  .bank{ display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-bottom:10px; }
+  .chip{
+    font-family:'Inter',sans-serif; font-weight:700; font-size:15px;
+    background:var(--white); color:var(--ink);
+    border:2.5px solid var(--ink); border-radius:14px; padding:12px 20px;
+    cursor:pointer; box-shadow:3px 4px 0 var(--gray-soft);
+    transition:transform .15s ease, opacity .15s ease;
+  }
+  .chip:hover{ transform:translate(-2px,-2px); }
+  .chip:active{ transform:translate(1px,2px); }
+  .chip.used{ opacity:.2; pointer-events:none; box-shadow:none; }
+  .chip:disabled{ cursor:default; }
+  .check-row{ display:flex; justify-content:center; margin-top:18px; }
+  .check-row .btn-check{ padding:14px 34px; }
+  .btn-listen:disabled{ background:var(--gray-soft); color:var(--gray); box-shadow:none; cursor:not-allowed; transform:none; }
+  .rule-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+  .rule-grid div{ background:var(--white); border:2px solid var(--ink); border-radius:12px; padding:10px 12px; font-size:13px; }
+  @media (max-width:480px){ .gap-slot{ min-width:90px; } .rule-grid{ grid-template-columns:1fr; } }
+
+</style>
+</head>
+<body>
+
+<div class="bg-blob b1" aria-hidden="true"></div>
+<div class="bg-blob b2" aria-hidden="true"></div>
+
+<audio id="tts-audio" preload="none" style="display:none;"></audio>
+
+<div class="stage">
+
+  <div class="header-row">
+    <div class="m1-badge">B1</div>
+    <div class="m1-label">INTERMEDIATE <span>B1</span></div>
+  </div>
+
+  <!-- ============ WELCOME SCREEN ============ -->
+  <section class="screen active" id="screen-welcome">
+    <div class="welcome">
+      <div class="eyebrow-pill">✦ Interactive Activity</div>
+      <h1 class="title">Past Simple &amp; Past Perfect</h1>
+      <p class="lead">Complete each sentence with the correct verb forms.</p>
+      <p class="sub-lead">Look at the picture, fill every blank from the word box, then check your answer.</p>
+
+      <div class="preview-row" aria-hidden="true">
+        <div class="chip-preview">WENT</div>
+        <div class="chip-preview">HAD LIVED</div>
+        <div class="chip-preview">HADN'T CLEANED</div>
+      </div>
+
+      <div class="info-box">
+        <strong>Instructions:</strong> in each question you will see a real photo and a sentence with <strong>two or three blanks</strong>. Tap the words in the word box to fill the blanks in order. Choose between the <strong>Past Simple</strong> and the <strong>Past Perfect</strong>, and watch out for the wrong forms! Tap a filled blank to take its word back. When all the blanks are filled, press <strong>“Check”</strong>. After you check, you will hear the complete sentence read aloud, and you can use the <strong>microphone</strong> button to record yourself saying it.
+        <div style="margin-top:10px;"><strong>Remember:</strong> Past Perfect = <strong>had</strong> + past participle. Use it for the action that happened <em>first</em>; use the Past Simple for the later one.</div>
+      </div>
+
+      <button class="btn btn-primary" id="btn-start">
+        START ACTIVITY
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ ACTIVITY SCREEN ============ -->
+  <section class="screen" id="screen-activity">
+    <div class="meta-row">
+      <div class="q-count" id="q-count">QUESTION 1 OF 10</div>
+      <div class="dots" id="dots"></div>
+      <div class="score-badge">SCORE: <span id="score-value">0</span>/10</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">Complete the sentence</div>
+      <div class="card-sub">Look at the picture and fill every blank with the correct words.</div>
+
+      <div class="photo-frame" id="photo-frame">
+        <div class="img-loading">Loading photo…</div>
+        <img id="photo-img" alt="A real photograph related to the sentence." />
+      </div>
+
+      <div class="sentence-block">
+        <div class="sentence-text" id="sentence-text"></div>
+      </div>
+
+      <div class="field-label bank-label">Word box</div>
+      <div class="bank" id="bank"></div>
+
+      <div class="check-row">
+        <button class="btn-check" id="btn-check" type="button" disabled>CHECK</button>
+      </div>
+      <div class="correct-reveal" id="correct-reveal" style="display:none; text-align:center;"></div>
+
+      <div class="feedback-toast" id="feedback-toast"></div>
+
+      <div class="listen-row" style="margin:22px 0 0;">
+        <button class="btn-listen" id="btn-listen" type="button" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+          <span id="listen-label">LISTEN (AFTER CHECKING)</span>
+        </button>
+      </div>
+
+      <div class="record-panel" id="record-panel">
+        <div class="record-title">🎤 Practice your pronunciation</div>
+        <div class="record-desc">The correct sentence was: <strong id="record-sentence">—</strong> Record yourself saying it out loud, then listen back.</div>
+        <div class="record-controls">
+          <button class="btn-sm" id="btn-record" type="button">● Record my voice</button>
+          <span class="record-status" id="record-status"></span>
+        </div>
+        <audio class="record-audio" id="record-audio" controls style="display:none;"></audio>
+        <div class="record-note" id="record-note"></div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn btn-primary" id="btn-next" style="display:none;">NEXT QUESTION
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL SCREEN ============ -->
+  <section class="screen" id="screen-final">
+    <div class="card final-card">
+      <div class="trophy-wrap">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 01-10 0V4z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 5H4a1 1 0 00-1 1v1a4 4 0 004 4M17 5h3a1 1 0 011 1v1a4 4 0 01-4 4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h2 class="final-title">Well done!</h2>
+      <p class="final-sub">You completed the Past Simple &amp; Past Perfect activity.</p>
+
+      <div class="score-display"><span id="final-score">0</span><span class="of">/ 10</span></div>
+      <div class="score-label">Your score</div>
+
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+
+      <div class="final-btn-row">
+        <button class="btn btn-primary" id="btn-retry">TRY AGAIN</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+
+  const P = id => "https://images.pexels.com/photos/" + id + "/pexels-photo-" + id + ".jpeg?auto=compress&cs=tinysrgb&h=627&fit=crop&w=1200";
+
+  // Sentences, correct answers [in brackets] and wrong options follow the
+  // original Wordwall "Past Simple & Past Perfect" gap-fill. Each item has a
+  // real photo and a voice gender matched to the photo.
+  const QUESTIONS = [
+    { text:"Laura [repaired] her glasses because her brother [had broken] them.",
+      wrong:["had repaired","broken","break","repair"],
+      img:P(9773118), voice:'F', alt:"A pair of broken glasses with a cracked lens on a table." },
+    { text:"She [had lived] in Sweden before she [went] to Norway.",
+      wrong:["lived","had gone","had live"],
+      img:P(28583369), voice:'F', alt:"A calm Norwegian fjord surrounded by mountains." },
+    { text:"There [were] no sausages left when I [came] back. The dog [had eaten] them.",
+      wrong:["was","had come","ate"],
+      img:P(8545348), voice:'M', alt:"A dog sniffing grilled food on a table outdoors." },
+    { text:"The house [was] so dirty because they [hadn't cleaned] it for years!",
+      wrong:["were","had been","had cleaned","didn't clean"],
+      img:P(17336533), voice:'M', alt:"A dirty, dusty room in an old abandoned house." },
+    { text:"The students [submitted] their exams once they [had checked] them twice.",
+      wrong:["had submitted","checked","had check"],
+      img:P(6683577), voice:'M', alt:"Students sitting in a classroom taking an exam." },
+    { text:"After Fred [had spent] his holiday in Italy he [decided] to learn Italian.",
+      wrong:["had decided","spend","hadn't spent"],
+      img:P(14395593), voice:'M', alt:"Tourists walking through a historic Italian town." },
+    { text:"I [offered] Jane something to eat but she [refused]. She [had had] lunch before.",
+      wrong:["had offered","had refused","had"],
+      img:P(11352518), voice:'F', alt:"A woman refusing with both hands up in a stop gesture." },
+    { text:"When I [arrived] at the restaurant, Victoria [had already ordered] our food so we started eating immediately.",
+      wrong:["had arrived","ordered"],
+      img:P(3923437), voice:'F', alt:"Two women smiling at a restaurant table." },
+    { text:"At first, I thought I [had done] it right but then I [realised] that I [had made] a mistake.",
+      wrong:["did","had realised","made"],
+      img:P(6517090), voice:'M', alt:"A man with glasses looking worried while using his laptop." },
+    { text:"Snowboards [had already been] in use in the 19th century before they [became] popular.",
+      wrong:["were already","become"],
+      img:P(1973293), voice:'M', alt:"A snowboarder jumping in front of snowy mountains." }
+  ];
+
+  // Parse "text [answer] text [answer] ..." into segments and answers.
+  QUESTIONS.forEach(function(q){
+    q.segs = []; q.answers = [];
+    const re = /\[([^\]]+)\]/g;
+    let last = 0, m;
+    while((m = re.exec(q.text))){
+      q.segs.push(q.text.slice(last, m.index));
+      q.answers.push(m[1]);
+      last = m.index + m[0].length;
+    }
+    q.segs.push(q.text.slice(last));
+  });
+
+  let current = 0;
+  let score = 0;
+  let locked = false;
+  let slots = [];            // chip index placed in each blank (or null)
+  let active = 0;
+  let chips = [];            // [{text}] for the current question
+  let mediaRecorder = null;
+  let recordedChunks = [];
+  let isRecording = false;
+  let micStream = null;
+
+  const screens = {
+    welcome: document.getElementById('screen-welcome'),
+    activity: document.getElementById('screen-activity'),
+    final: document.getElementById('screen-final')
+  };
+
+  const qCount = document.getElementById('q-count');
+  const scoreValue = document.getElementById('score-value');
+  const dotsEl = document.getElementById('dots');
+  const photoFrame = document.getElementById('photo-frame');
+  const photoImg = document.getElementById('photo-img');
+  const sentenceText = document.getElementById('sentence-text');
+  const bankEl = document.getElementById('bank');
+  const btnCheck = document.getElementById('btn-check');
+  const correctReveal = document.getElementById('correct-reveal');
+  const feedbackToast = document.getElementById('feedback-toast');
+  const btnListen = document.getElementById('btn-listen');
+  const listenLabel = document.getElementById('listen-label');
+  const btnNext = document.getElementById('btn-next');
+  const btnStart = document.getElementById('btn-start');
+  const btnRetry = document.getElementById('btn-retry');
+  const recordPanel = document.getElementById('record-panel');
+  const recordSentence = document.getElementById('record-sentence');
+  const btnRecord = document.getElementById('btn-record');
+  const recordStatus = document.getElementById('record-status');
+  const recordAudio = document.getElementById('record-audio');
+  const recordNote = document.getElementById('record-note');
+
+  function fullSentence(q){
+    return q.text.replace(/\[([^\]]+)\]/g, '$1').replace(/\s+/g, ' ').trim();
+  }
+
+  function shuffle(arr){
+    for(let i = arr.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  const ttsAudio = document.getElementById('tts-audio');
+  const NEURAL_VOICES = {
+    M: ["Matthew", "Joey"],
+    F: ["Joanna", "Kendra", "Salli"]
+  };
+  let consecutiveFailures = 0;
+
+  function pickNeuralVoice(gender, index){
+    const list = NEURAL_VOICES[gender] || NEURAL_VOICES.F;
+    return list[index % list.length];
+  }
+
+  let cachedVoices = [];
+  function refreshVoices(){
+    if('speechSynthesis' in window){ cachedVoices = window.speechSynthesis.getVoices(); }
+  }
+  if('speechSynthesis' in window){
+    refreshVoices();
+    window.speechSynthesis.onvoiceschanged = refreshVoices;
+  }
+
+  function pickFallbackVoice(gender){
+    if(!cachedVoices.length) return null;
+    const femaleNames = [/Samantha/i, /Zira/i, /Female/i, /Joanna/i, /Aria/i, /Jenny/i, /Victoria/i];
+    const maleNames   = [/Daniel/i, /David/i, /Alex/i, /Male/i, /Guy/i, /Fred/i, /Matthew/i];
+    const priorityNames = gender === 'M' ? maleNames : femaleNames;
+    for(const rx of priorityNames){
+      const v = cachedVoices.find(v => rx.test(v.name) && v.lang.startsWith('en'));
+      if(v) return v;
+    }
+    const enUS = cachedVoices.find(v => v.lang === 'en-US');
+    if(enUS) return enUS;
+    const anyEn = cachedVoices.find(v => v.lang && v.lang.startsWith('en'));
+    return anyEn || cachedVoices[0];
+  }
+
+  function pickPremiumVoice(gender){
+    if(!cachedVoices.length) return null;
+    const femaleNames = [
+      /Microsoft (Aria|Jenny|Michelle|Ana) Online \(Natural\)/i,
+      /Google US English/i,
+      /Samantha/i
+    ];
+    const maleNames = [
+      /Microsoft (Guy|Davis|Andrew|Christopher|Eric|Brian) Online \(Natural\)/i,
+      /Google UK English Male/i,
+      /Alex/i
+    ];
+    const priorityNames = gender === 'M' ? maleNames : femaleNames;
+    for(const rx of priorityNames){
+      const v = cachedVoices.find(v => rx.test(v.name) && v.lang && v.lang.startsWith('en'));
+      if(v) return v;
+    }
+    return null;
+  }
+
+  function speakWithVoice(text, voice, onEnd){
+    if(!('speechSynthesis' in window)){ if(onEnd) onEnd(); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    utter.voice = voice;
+    utter.rate = 0.94; utter.pitch = 1.0; utter.volume = 1;
+    utter.onend = function(){ if(onEnd) onEnd(); };
+    utter.onerror = function(){ if(onEnd) onEnd(); };
+    window.speechSynthesis.speak(utter);
+  }
+
+  function fallbackSpeak(text, gender, onEnd){
+    if(!('speechSynthesis' in window)){ if(onEnd) onEnd(); return; }
+    window.speechSynthesis.cancel();
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'en-US';
+    const v = pickFallbackVoice(gender);
+    if(v) utter.voice = v;
+    utter.rate = 0.9; utter.pitch = gender === 'M' ? 0.95 : 1.05; utter.volume = 1;
+    utter.onend = function(){ if(onEnd) onEnd(); };
+    utter.onerror = function(){ if(onEnd) onEnd(); };
+    window.speechSynthesis.speak(utter);
+  }
+
+  function attemptNeural(text, gender, voiceIndex, attempt, onSuccess, onFail){
+    const voiceName = pickNeuralVoice(gender, voiceIndex + attempt);
+    const url = 'https://api.streamelements.com/kappa/v2/speech?voice=' + voiceName + '&text=' + encodeURIComponent(text);
+    let settled = false;
+    const timeoutMs = consecutiveFailures >= 2 ? 4000 : 7000;
+    const safety = setTimeout(function(){
+      if(!settled){ settled = true; try{ ttsAudio.pause(); }catch(e){} onFail(); }
+    }, timeoutMs);
+
+    ttsAudio.onended = function(){
+      if(settled) return; settled = true; clearTimeout(safety);
+      consecutiveFailures = 0; onSuccess();
+    };
+    ttsAudio.onerror = function(){
+      if(settled) return; settled = true; clearTimeout(safety); onFail();
+    };
+
+    try{
+      ttsAudio.src = url;
+      const p = ttsAudio.play();
+      if(p && p.catch){
+        p.catch(function(){ if(settled) return; settled = true; clearTimeout(safety); onFail(); });
+      }
+    }catch(e){
+      if(!settled){ settled = true; clearTimeout(safety); onFail(); }
+    }
+  }
+
+  let speakToken = 0;
+  function stopAudio(){
+    speakToken++;
+    try{ ttsAudio.pause(); }catch(e){}
+    ttsAudio.onended = null; ttsAudio.onerror = null;
+    if('speechSynthesis' in window){ window.speechSynthesis.cancel(); }
+  }
+
+  function speakPhrase(text, gender, onEnd){
+    const tok = ++speakToken;
+    let finished = false;
+    const finish = function(){ if(!finished){ finished = true; if(tok === speakToken && onEnd) onEnd(); } };
+
+    const premium = pickPremiumVoice(gender);
+    if(premium){ speakWithVoice(text, premium, finish); return; }
+
+    attemptNeural(text, gender, 0, 0, finish, function(){
+      if(tok !== speakToken) return;
+      attemptNeural(text, gender, 0, 1, finish, function(){
+        if(tok !== speakToken) return;
+        consecutiveFailures++;
+        fallbackSpeak(text, gender, finish);
+      });
+    });
+  }
+
+
+  function playSentence(q){
+    btnListen.classList.add('speaking');
+    btnListen.disabled = true;
+    listenLabel.textContent = 'PLAYING…';
+    speakPhrase(fullSentence(q), q.voice, function(){
+      btnListen.classList.remove('speaking');
+      btnListen.disabled = false;
+      listenLabel.textContent = 'LISTEN AGAIN';
+    });
+  }
+
+  btnListen.addEventListener('click', function(){
+    if(btnListen.disabled || !locked) return;
+    playSentence(QUESTIONS[current]);
+  });
+
+  /* ---------------- Voice recording (student practice) ---------------- */
+  function stopMicStream(){
+    if(micStream){
+      micStream.getTracks().forEach(t => t.stop());
+      micStream = null;
+    }
+  }
+
+  async function startRecording(){
+    if(!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === 'undefined'){
+      recordNote.textContent = 'Your browser does not allow audio recording here. You can still practice out loud.';
+      return;
+    }
+    try{
+      micStream = await navigator.mediaDevices.getUserMedia({ audio:true });
+      recordedChunks = [];
+      mediaRecorder = new MediaRecorder(micStream);
+      mediaRecorder.ondataavailable = function(e){ if(e.data && e.data.size > 0) recordedChunks.push(e.data); };
+      mediaRecorder.onstop = function(){
+        const blob = new Blob(recordedChunks, { type:'audio/webm' });
+        const url = URL.createObjectURL(blob);
+        recordAudio.src = url;
+        recordAudio.style.display = 'block';
+        recordStatus.textContent = '✓ Recording ready. Press play to listen to yourself.';
+        stopMicStream();
+      };
+      mediaRecorder.start();
+      isRecording = true;
+      btnRecord.textContent = '■ Stop recording';
+      btnRecord.classList.add('recording');
+      recordStatus.textContent = 'Recording… speak now.';
+      recordNote.textContent = '';
+    }catch(err){
+      recordNote.textContent = 'We could not access your microphone. Please check your browser permissions and try again.';
+    }
+  }
+
+  function stopRecording(){
+    if(mediaRecorder && isRecording){
+      mediaRecorder.stop();
+    }
+    isRecording = false;
+    btnRecord.textContent = '● Record my voice';
+    btnRecord.classList.remove('recording');
+  }
+
+  btnRecord.addEventListener('click', function(){
+    if(isRecording){ stopRecording(); }
+    else { startRecording(); }
+  });
+
+  function resetRecordPanel(){
+    recordPanel.classList.remove('show');
+    recordAudio.style.display = 'none';
+    recordAudio.removeAttribute('src');
+    recordStatus.textContent = '';
+    recordNote.textContent = '';
+    btnRecord.textContent = '● Record my voice';
+    btnRecord.classList.remove('recording');
+    isRecording = false;
+    if(mediaRecorder && mediaRecorder.state !== 'inactive'){
+      try{ mediaRecorder.stop(); }catch(e){}
+    }
+    stopMicStream();
+  }
+
+
+  /* ---------------- Photo loading ---------------- */
+  function loadPhoto(q){
+    const loading = photoFrame.querySelector('.img-loading');
+    loading.style.display = 'block';
+    loading.textContent = 'Loading photo…';
+    photoImg.style.opacity = '0';
+    photoImg.alt = q.alt;
+    photoImg.onload = function(){ loading.style.display = 'none'; photoImg.style.opacity = '1'; };
+    photoImg.onerror = function(){ loading.textContent = 'Photo could not be loaded.'; };
+    photoImg.src = q.img;
+  }
+
+  /* ---------------- Quiz logic ---------------- */
+  function buildDots(){
+    dotsEl.innerHTML = '';
+    QUESTIONS.forEach(()=>{
+      const d = document.createElement('div');
+      d.className = 'dot';
+      dotsEl.appendChild(d);
+    });
+  }
+
+  function refreshDots(){
+    [...dotsEl.children].forEach((d,i)=>{
+      d.classList.remove('done','current');
+      if(i < current) d.classList.add('done');
+      else if(i === current) d.classList.add('current');
+    });
+  }
+
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+  function slotHtml(i, result){
+    const chipIdx = slots[i];
+    const text = chipIdx === null ? '' : chips[chipIdx].text;
+    let cls = 'gap-slot';
+    if(chipIdx !== null) cls += ' filled';
+    if(!locked && active === i) cls += ' active';
+    if(result) cls += result[i] ? ' is-correct' : ' is-wrong';
+    const label = chipIdx === null ? 'Blank ' + (i + 1) + ', empty' : 'Blank ' + (i + 1) + ': ' + text;
+    return '<button type="button" class="' + cls + '" data-slot="' + i + '" aria-label="' + esc(label) + '"' + (locked ? ' disabled' : '') + '>' + esc(text) + '</button>';
+  }
+
+  function renderSentence(q, result){
+    let html = '';
+    q.segs.forEach(function(seg, i){
+      html += esc(seg);
+      if(i < q.answers.length) html += slotHtml(i, result);
+    });
+    sentenceText.innerHTML = html;
+    sentenceText.querySelectorAll('.gap-slot').forEach(function(btn){
+      btn.addEventListener('click', function(){ onSlotClick(parseInt(btn.dataset.slot, 10)); });
+    });
+  }
+
+  function renderBank(){
+    bankEl.innerHTML = '';
+    chips.forEach(function(c, idx){
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip' + (slots.indexOf(idx) !== -1 ? ' used' : '');
+      b.textContent = c.text;
+      b.disabled = locked;
+      b.addEventListener('click', function(){ onChipClick(idx); });
+      bankEl.appendChild(b);
+    });
+  }
+
+  function allFilled(){ return slots.every(function(s){ return s !== null; }); }
+
+  function refreshState(result){
+    renderSentence(QUESTIONS[current], result || null);
+    renderBank();
+    btnCheck.disabled = locked || !allFilled();
+  }
+
+  function onChipClick(idx){
+    if(locked) return;
+    let target = active;
+    if(slots[target] !== null){
+      const empty = slots.indexOf(null);
+      if(empty !== -1) target = empty;
+    }
+    slots[target] = idx;
+    const nextEmpty = slots.indexOf(null);
+    active = nextEmpty !== -1 ? nextEmpty : target;
+    refreshState();
+  }
+
+  function onSlotClick(i){
+    if(locked) return;
+    if(slots[i] !== null){ slots[i] = null; }
+    active = i;
+    refreshState();
+  }
+
+  function renderQuestion(){
+    locked = false;
+    stopAudio();
+    const q = QUESTIONS[current];
+    slots = q.answers.map(function(){ return null; });
+    active = 0;
+    chips = shuffle(q.answers.concat(q.wrong).map(function(t){ return { text:t }; }));
+
+    qCount.textContent = 'QUESTION ' + (current + 1) + ' OF ' + QUESTIONS.length;
+    refreshDots();
+
+    feedbackToast.className = 'feedback-toast';
+    feedbackToast.innerHTML = '';
+    btnNext.style.display = 'none';
+    resetRecordPanel();
+    correctReveal.style.display = 'none';
+
+    btnListen.disabled = true;
+    btnListen.classList.remove('speaking');
+    listenLabel.textContent = 'LISTEN (AFTER CHECKING)';
+
+    loadPhoto(q);
+    refreshState();
+  }
+
+  function showFeedback(isCorrect, okCount, total){
+    feedbackToast.className = 'feedback-toast show ' + (isCorrect ? 'correct' : 'incorrect');
+    if(isCorrect){
+      feedbackToast.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Correct! Well done.';
+    } else {
+      const msg = okCount > 0 ? ('Almost — ' + okCount + ' of ' + total + ' blanks correct. See the full sentence below.') : 'Not quite — the correct sentence is shown below.';
+      feedbackToast.innerHTML = '<svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4M12 16.5h.01M12 3l9 16H3L12 3z" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' + msg;
+      photoFrame.classList.add('shake');
+      setTimeout(()=>photoFrame.classList.remove('shake'), 400);
+    }
+  }
+
+  function checkAnswer(){
+    if(locked) return;
+    if(!allFilled()){
+      sentenceText.classList.add('shake');
+      setTimeout(()=>sentenceText.classList.remove('shake'), 400);
+      return;
+    }
+    const q = QUESTIONS[current];
+    const result = q.answers.map(function(a, i){ return chips[slots[i]].text === a; });
+    const okCount = result.filter(Boolean).length;
+    const isCorrect = okCount === q.answers.length;
+    locked = true;
+    refreshState(result);
+    btnCheck.disabled = true;
+
+    correctReveal.style.display = 'block';
+    correctReveal.innerHTML = 'Correct sentence: <strong>' + esc(fullSentence(q)) + '</strong>';
+
+    showFeedback(isCorrect, okCount, q.answers.length);
+
+    if(isCorrect){
+      score++;
+      scoreValue.textContent = score;
+    }
+    dotsEl.children[current].classList.add('done');
+
+    playSentence(q);
+
+    recordSentence.textContent = fullSentence(q);
+    recordPanel.classList.add('show');
+
+    btnNext.style.display = 'inline-flex';
+    btnNext.textContent = (current === QUESTIONS.length - 1) ? 'SEE RESULTS' : 'NEXT QUESTION';
+  }
+
+  btnCheck.addEventListener('click', checkAnswer);
+
+  btnNext.addEventListener('click', function(){
+    stopAudio();
+    current++;
+    if(current < QUESTIONS.length){
+      renderQuestion();
+    } else {
+      showFinal();
+    }
+  });
+
+  btnStart.addEventListener('click', ()=>{
+    screens.welcome.classList.remove('active');
+    screens.activity.classList.add('active');
+    buildDots();
+    renderQuestion();
+  });
+
+  function showFinal(){
+    screens.activity.classList.remove('active');
+    screens.final.classList.add('active');
+    document.getElementById('final-score').textContent = score;
+    const pct = Math.round((score / QUESTIONS.length) * 100);
+    setTimeout(()=>{
+      document.getElementById('progress-fill').style.width = pct + '%';
+    }, 150);
+  }
+
+  btnRetry.addEventListener('click', ()=>{
+    current = 0;
+    score = 0;
+    scoreValue.textContent = 0;
+    document.getElementById('progress-fill').style.width = '0%';
+    screens.final.classList.remove('active');
+    screens.activity.classList.add('active');
+    buildDots();
+    renderQuestion();
+  });
+
+})();
+</script>
+
+</body>
+</html>
